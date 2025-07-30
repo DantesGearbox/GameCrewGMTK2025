@@ -352,6 +352,9 @@ public class PrometeoCarController : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space)){
           RecoverTraction();
         }
+        if(Input.GetKey(KeyCode.V)){
+          LockTheFuckIn();
+        }
         if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))){
           ThrottleOff();
         }
@@ -771,4 +774,18 @@ public class PrometeoCarController : MonoBehaviour
       }
     }
 
+    // This function is used to remove all the drifting shenanigans temporarily
+    // Basically "RecoverTraction" on steroids
+    public void LockTheFuckIn(){ 
+      // Calculate the velocity relative to the car’s orientation
+      Vector3 localVelocity = transform.InverseTransformDirection(carRigidbody.linearVelocity); 
+      // Get the car's current speed (magnitude of velocity)
+      float speed = carRigidbody.linearVelocity.magnitude;
+      // Remove the sideways (X axis) component
+      localVelocity.x = 0f; 
+      localVelocity.z = speed;
+ 
+      // Convert it back to world space and apply
+      carRigidbody.linearVelocity = transform.TransformDirection(localVelocity);  
+    }
 }
