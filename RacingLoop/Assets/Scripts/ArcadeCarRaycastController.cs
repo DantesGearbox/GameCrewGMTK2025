@@ -7,8 +7,8 @@ public class ArcadeCarRaycastController : MonoBehaviour
 	public float turnStrength = 100f;
 	public float maxSpeed = 50f;
 	public float rayLength = 1.2f;
+	public float downForce = 5f;
 	public LayerMask groundLayer;
-	public float downForce = 100f;
 	public Transform[] groundCheckPoints; // 4 points under car corners
 
 	private Rigidbody rb;
@@ -20,12 +20,6 @@ public class ArcadeCarRaycastController : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		rb.centerOfMass = new Vector3(0, -0.5f, 0);
-	}
-
-	void Update()
-	{
-		moveInput = Input.GetAxis("Vertical");
-		steerInput = Input.GetAxis("Horizontal");
 	}
 
 	void FixedUpdate()
@@ -51,11 +45,17 @@ public class ArcadeCarRaycastController : MonoBehaviour
 			// Extra downforce
 			rb.AddForce(-transform.up * downForce);
 		}
-		else
-		{
-			// Mid-air stability (optional)
-			rb.AddTorque(transform.right * -steerInput * 10f);
-		}
+	}
+
+	public void SimulateInput(float throttle, float steering)
+	{
+		moveInput = throttle;
+		steerInput = steering;
+	}
+
+	public void SetLiveInput()
+	{
+		SimulateInput(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
 	}
 
 	void CheckGrounded()
