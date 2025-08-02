@@ -5,7 +5,7 @@ public class GhostSpawner : MonoBehaviour
 	public GameObject ghostPrefab;
 	public InputRecorder playerInputRecorder;
 
-	void SpawnGhost()
+	public void SpawnGhost()
 	{
 		GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation);
 		InputReplayer replayer = ghost.GetComponent<InputReplayer>();

@@ -26,22 +26,18 @@ public class ArcadeCarRaycastController : MonoBehaviour
 	{
 		CheckGrounded();
 
-		if (isGrounded)
+		// Apply forward force
+		if (rb.linearVelocity.magnitude < maxSpeed)
 		{
-			// Apply forward force
-			if (rb.linearVelocity.magnitude < maxSpeed)
-			{
-				rb.AddForce(transform.forward * moveInput * acceleration * Time.fixedDeltaTime);
-			}
+			rb.AddForce(transform.forward * moveInput * acceleration * Time.fixedDeltaTime);
+		}
 
-			// Turning
-			if (rb.linearVelocity.magnitude > 1f)
-			{
-				float turn = steerInput * turnStrength * Time.fixedDeltaTime;
-				Quaternion turnRot = Quaternion.Euler(0f, turn, 0f);
-				rb.MoveRotation(rb.rotation * turnRot);
-			}
-
+		// Turning
+		if (rb.linearVelocity.magnitude > 1f)
+		{
+			float turn = steerInput * turnStrength * Time.fixedDeltaTime;
+			Quaternion turnRot = Quaternion.Euler(0f, turn, 0f);
+			rb.MoveRotation(rb.rotation * turnRot);
 		}
 
 		// Extra downforce

@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 8119654512604652993}
   - component: {fileID: 8313911918563018416}
   - component: {fileID: 4723088906976289035}
+  - component: {fileID: 8484221633902169571}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,6 +182,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recordedInputs: []
+--- !u!114 &8484221633902169571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767579464484770189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903c530c0fa801f448a09be905dd4be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalCheckpoints: 1
+  currentCheckpointIndex: 0
+  currentLap: 0
+  totalLaps: 5
 --- !u!1 &5398226382128145888
 GameObject:
   m_ObjectHideFlags: 0

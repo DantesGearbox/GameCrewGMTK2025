@@ -8,7 +8,9 @@ public class CheckpointManager : MonoBehaviour
     public int totalLaps = 5;
     private bool lapCompleted = false;
 
-    public void ResetCheckpoints()
+    public GhostSpawner ghostSpawner;
+
+	public void ResetCheckpoints()
     {
         currentCheckpointIndex = 0;
     }
@@ -35,6 +37,8 @@ public class CheckpointManager : MonoBehaviour
             lapCompleted = false;
 
             Debug.Log("Lap Completed! Current Lap: " + currentLap);
+
+            ghostSpawner.SpawnGhost();
 
             if (currentLap >= totalLaps)
             {
