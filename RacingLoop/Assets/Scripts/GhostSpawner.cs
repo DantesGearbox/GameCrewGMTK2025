@@ -1,22 +1,20 @@
-// Spawns ghost after player finishes lap or after delay
-
 using UnityEngine;
 
 public class GhostSpawner : MonoBehaviour
 {
 	public GameObject ghostPrefab;
-	public InputRecorder playerRecorder;
+	public InputRecorder playerInputRecorder;
 
 	void SpawnGhost()
 	{
 		GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation);
 		InputReplayer replayer = ghost.GetComponent<InputReplayer>();
-		replayer.SetReplayData(playerRecorder.GetRecordedData());
+		replayer.SetReplayData(playerInputRecorder.GetRecordedData());
 	}
 
 	private void Update()
 	{
-		if (playerRecorder != null)
+		if (playerInputRecorder != null)
 		{
 			if(Input.GetKeyDown(KeyCode.L))
 			{

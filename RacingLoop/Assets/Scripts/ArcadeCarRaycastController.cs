@@ -42,9 +42,10 @@ public class ArcadeCarRaycastController : MonoBehaviour
 				rb.MoveRotation(rb.rotation * turnRot);
 			}
 
-			// Extra downforce
-			rb.AddForce(-transform.up * downForce);
 		}
+
+		// Extra downforce
+		rb.AddForce(-transform.up * downForce);
 	}
 
 	public void SimulateInput(float throttle, float steering)
